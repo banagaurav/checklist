@@ -3,29 +3,19 @@ import { PlusOutlined } from "@ant-design/icons";
 
 export default function Rhs({ onAddHeading, onAddList, hasSelection }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+    <div style={{ display: "flex", gap: 8 }}>
       <Button
         type="primary"
         icon={<PlusOutlined />}
         disabled={!hasSelection}
-        onClick={() => {
-          const text = prompt("Enter list item:");
-          if (text && text.trim()) {
-            onAddList(text.trim());
-          }
-        }}
+        onClick={onAddList}
       >
         Add List
       </Button>
       <Button
         type="default"
         icon={<PlusOutlined />}
-        onClick={() => {
-          const title = prompt("Enter heading name:");
-          if (title && title.trim()) {
-            onAddHeading(title.trim());
-          }
-        }}
+        onClick={onAddHeading}
       >
         Add Heading
       </Button>

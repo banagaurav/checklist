@@ -16,6 +16,21 @@ export default function App({ Component, pageProps }) {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js").then((reg) => {
+        reg.addEventListener("updatefound", () => {
+          const newSW = reg.installing;
+          newSW.addEventListener("statechange", () => {
+            if (newSW.state === "installed" && navigator.serviceWorker.controller) {
+              window.location.reload();
+            }
+          });
+        });
+      });
+    }
+  }, []);
+
+  useEffect(() => {
     if (typeof window !== "undefined") {
       try {
         const userStr = localStorage.getItem("user");
