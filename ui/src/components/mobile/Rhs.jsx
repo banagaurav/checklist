@@ -26,7 +26,7 @@ export default function Rhs({ onAddHeading, onAddList, hasSelection }) {
               pointerEvents: hasSelection ? "auto" : "none",
             }}
           >
-            <UnorderedListOutlined /> Add List
+            <UnorderedListOutlined /> Add List <span style={{ fontSize: 10, opacity: 0.7, marginLeft: 4 }}>Alt+L</span>
           </div>
           <div
             onClick={() => { setExpanded(false); onAddHeading(); }}
@@ -45,7 +45,7 @@ export default function Rhs({ onAddHeading, onAddList, hasSelection }) {
               border: "2px solid #722ed1",
             }}
           >
-            <PlusOutlined /> Add Heading
+            <PlusOutlined /> Add Heading <span style={{ fontSize: 10, opacity: 0.7, marginLeft: 4 }}>Alt+H</span>
           </div>
         </>
       )}

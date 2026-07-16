@@ -42,6 +42,21 @@ export default function DesktopApp() {
     if (headings.length > 0) saveHeadings(headings);
   }, [headings]);
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.altKey && e.key === "l") {
+        e.preventDefault();
+        if (selectedId) openItemModal(selectedId);
+      }
+      if (e.altKey && e.key === "h") {
+        e.preventDefault();
+        setHeadingModalOpen(true);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedId]);
+
   const addHeading = (title) => {
     const newHeading = { id: Date.now(), title, createdAt: new Date().toISOString(), items: [] };
     setHeadings((prev) => [...prev, newHeading]);
